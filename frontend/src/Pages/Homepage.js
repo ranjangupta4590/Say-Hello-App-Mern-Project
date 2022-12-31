@@ -30,18 +30,17 @@ function Homepage() {
         </Text>
       </Box>
       <Box className='p-4 bg-slate-50 w-[100%]  rounded-xl'>
-      <Tabs variant='soft-rounded'>
+        <Tabs variant='soft-rounded'>
           <TabList className='mb-1'>
             <Tab _selected={{ color: 'white', bg: 'blue.500' }} className='w-[50%] border-4 mr-2'>Login</Tab>
             <Tab _selected={{ color: 'white', bg: 'green.400' }} className='w-[50%] border-4'>Sign Up</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
-              <Login/>
-              
+              <Login />
             </TabPanel>
             <TabPanel>
-             <Signup/>
+              <Signup />
             </TabPanel>
           </TabPanels>
         </Tabs>

@@ -79,9 +79,9 @@ const fetchChats = asyncHandler(async (req, res) => {
 
 
 
-// //   Create New Group Chat
-// //route           POST /api/chat/group
-// //access          Protected
+//   Create New Group Chat
+//route           POST /api/chat/group
+//access          Protected
 const createGroupChat = asyncHandler(async (req, res) => {
     if (!req.body.users || !req.body.name) {
         return res.status(400).send({ message: "Please Fill all the feilds" });
@@ -118,31 +118,31 @@ const createGroupChat = asyncHandler(async (req, res) => {
 
 
 
-// //    Rename Group
-// // route   PUT /api/chat/rename
-// // access  Protected
-// const renameGroup = asyncHandler(async (req, res) => {
-//     const { chatId, chatName } = req.body;
+//    Rename Group
+// route   PUT /api/chat/rename
+// access  Protected
+const renameGroup = asyncHandler(async (req, res) => {
+    const { chatId, chatName } = req.body;
 
-//     const updatedChat = await Chat.findByIdAndUpdate(
-//         chatId,
-//         {
-//             chatName: chatName,
-//         },
-//         {
-//             new: true,
-//         }
-//     )
-//         .populate("users", "-password")
-//         .populate("groupAdmin", "-password");
+    const updatedChat = await Chat.findByIdAndUpdate(
+        chatId,
+        {
+            chatName: chatName,
+        },
+        {
+            new: true,
+        }
+    )
+        .populate("users", "-password")
+        .populate("groupAdmin", "-password");
 
-//     if (!updatedChat) {
-//         res.status(404);
-//         throw new Error("Chat Not Found");
-//     } else {
-//         res.json(updatedChat);
-//     }
-// });
+    if (!updatedChat) {
+        res.status(404);
+        throw new Error("Chat Not Found");
+    } else {
+        res.json(updatedChat);
+    }
+});
 
 
 

@@ -7,13 +7,6 @@ const userModel=mongoose.Schema({
     type:String,
     required:true
   },
-  // mobile:{
-  //   type:Number,
-  //   required:true,
-  //   max:10,
-  //   min:10,
-  //   unique:true
-  // },
   email:{
   type:String,
   required:true,

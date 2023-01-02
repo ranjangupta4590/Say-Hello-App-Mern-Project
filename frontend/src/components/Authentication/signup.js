@@ -9,12 +9,11 @@ const SignUp = () => {
 const toast = useToast();
 const [name, setName] = useState();
 const [email, setEmail] = useState();
-// const [mobile, setMobile] = useState();
 const [password, setPassword] = useState();
 const [confirmpassword, setConfirmpassword] = useState();
 const [pic, setPic] = useState();
 const [open, setOpen] = useState(false);
-const [loading, setLoading] = useState(false);
+const [picLoading, setPicLoading] = useState(false);
 const history = useHistory();
 
 
@@ -23,7 +22,7 @@ const toggle =()=>{
 }
 
 const submitHandler = async () => {
-  setLoading(true);
+  setPicLoading(true);
   if (!name || !email || !password || !confirmpassword) {
     toast({
       title: "Please Fill all the Feilds",
@@ -32,7 +31,7 @@ const submitHandler = async () => {
       isClosable: true,
       position: "bottom",
     });
-    setLoading(false);
+    setPicLoading(false);
     return;
   }
   if (password !== confirmpassword) {
@@ -71,7 +70,7 @@ const submitHandler = async () => {
       position: "bottom",
     });
     localStorage.setItem("userInfo", JSON.stringify(data));
-    setLoading(false);
+    setPicLoading(false);
     history.push("/chats");
   } catch (error) {
     toast({
@@ -82,11 +81,11 @@ const submitHandler = async () => {
       isClosable: true,
       position: "bottom",
     });
-    setLoading(false);
+    setPicLoading(false);
   }
 };
 const postDetails = (pics) => {
-    setLoading(true);
+  setPicLoading(true);
     if (pics === undefined) {
       toast({
         title: "Please Select an Image!",
@@ -102,17 +101,19 @@ if(pics.type==="image/jpeg"||pics.type==="image/png"){
   data.append("file",pics);
   data.append("upload_preset","hello-app");
   data.append("cloud_name","dbo9twrrz");
-  fetch("CLOUDINARY_URL=cloudinary://487942744216426:GrjMXZcmQVE074KJ3XJNmi_OxRc@dbo9twrrz",
+  fetch("https://api.cloudinary.com/v1_1/dbo9twrrz/image/upload",
   {method:"post",
-  body:data,}).then((res)=>res.json())
+   body:data,
+   })
+  .then((res)=>res.json())
   .then((data) => {
     setPic(data.url.toString());
     console.log(data.url.toString());
-    setLoading(false);
+    setPicLoading(false);
   })
   .catch((err) => {
     console.log(err);
-    setLoading(false);
+    setPicLoading(false);
   });
 }else {
   toast({
@@ -122,7 +123,7 @@ if(pics.type==="image/jpeg"||pics.type==="image/png"){
     isClosable: true,
     position: "bottom",
   });
-  setLoading(false);
+  setPicLoading(false);
   return;
 }
 };
@@ -134,9 +135,9 @@ return (
     <div>
       <div className="">
         <form>
-          <div className="mb-6 " id='first-name'>
+          <div className="mb-6 " id="first-name">
             <input
-              isrequired
+            required
               type="text"
               className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Enter Your Name"
@@ -145,18 +146,9 @@ return (
             />
           </div>
           
-          {/* <div className='mb-6 '>
-            <input
-              type="text"
-              className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Mobile No."
-              name='mobile'
-              onChange={(e)=>setMobile(e.target.value)}
-            />
-          </div> */}
-          
           <div className="mb-6 " id='email'>
             <input
+            required
               type="text"
               className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Email address"
@@ -168,6 +160,7 @@ return (
           <div className="mb-6  relative" id='password'>
           <div>
             <input
+            required
               type={(!open?'password':'text')}
               className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Password"
@@ -183,9 +176,10 @@ return (
           </div>
 
           
-          <div className="mb-6  relative" id='confirmpassword'>
+          <div className="mb-6  relative" id='password'>
           <div>
             <input
+            required
               type={(!open?'password':'text')}
               className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Confirm Password"
@@ -200,7 +194,7 @@ return (
           </div>
           </div>
           <div className="mb-6" id='pic'>
-          <p><h1>Upload Profile</h1></p>
+          <h1><p>Upload Profile</p></h1>
             <input
               type="file"
               className='p-2'
@@ -217,7 +211,7 @@ return (
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
             onClick={submitHandler}
-            isLoading={loading}
+            disabled={picLoading}
           >
             Sign Up
           </button>

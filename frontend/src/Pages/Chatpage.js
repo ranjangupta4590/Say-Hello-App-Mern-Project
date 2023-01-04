@@ -11,7 +11,7 @@ const Chatpage = () => {
 
   return (
   
-    <div className='w-[100%] text-white'>
+    <div className='w-[100%]'>
          {user && <SideDrawer/>}
       <div className='flex justify-between w-[100%] h-[91.5vh] p-5'>
          {user && <MyChats/>}

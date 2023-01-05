@@ -7,11 +7,11 @@ import {useHistory} from 'react-router-dom';
 const SignUp = () => {
 
 const toast = useToast();
-const [name, setName] = useState();
-const [email, setEmail] = useState();
-const [password, setPassword] = useState();
-const [confirmpassword, setConfirmpassword] = useState();
-const [pic, setPic] = useState();
+const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [confirmpassword, setConfirmpassword] = useState("");
+const [pic, setPic] = useState("");
 const [open, setOpen] = useState(false);
 const [picLoading, setPicLoading] = useState(false);
 const history = useHistory();
@@ -44,7 +44,7 @@ const submitHandler = async () => {
     });
     return;
   }
-  console.log(name, email, password, pic);
+  // console.log(name, email, password, pic);
   try {
     const config = {
       headers: {
@@ -61,7 +61,7 @@ const submitHandler = async () => {
       },
       config
     );
-    console.log(data);
+    // console.log(data);
     toast({
       title: "Registration Successful",
       status: "success",
@@ -141,19 +141,20 @@ return (
               type="text"
               className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Enter Your Name"
-              onChange={(e)=>setName(e.target.value)}
               name='name'
-            />
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
+              />
           </div>
           
           <div className="mb-6 " id='email'>
             <input
             required
-              type="text"
-              className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Email address"
-              name='email'
-              onChange={(e)=>setEmail(e.target.value)}
+            type="email"
+            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            placeholder="Email address"
+            name='email'
+            onChange={(e)=>setEmail(e.target.value)}
             />
           </div>
           
@@ -166,7 +167,7 @@ return (
               placeholder="Password"
               name='password'
               onChange={(e)=>setPassword(e.target.value)}
-            />
+              />
           </div>
           <div className='text-2xl absolute top-3 right-5'>
             {
@@ -185,7 +186,7 @@ return (
               placeholder="Confirm Password"
               name='password'
               onChange={(e)=>setConfirmpassword(e.target.value)}
-            />
+              />
           </div>
           <div className='text-2xl absolute top-3 right-5'>
             {
@@ -199,8 +200,8 @@ return (
               type="file"
               className='p-2'
               accept='image/*'
-              onChange={(e)=>postDetails(e.target.files[0])}
               name='pic'
+              onChange={(e)=>postDetails(e.target.files[0])}
             />
           </div>
 

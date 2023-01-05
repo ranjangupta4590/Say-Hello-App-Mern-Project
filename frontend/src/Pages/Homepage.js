@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, withRouter } from "react-router-dom";
 import Login from "../components/Authentication/login";
 import Signup from "../components/Authentication/signup";
 
@@ -49,4 +49,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default withRouter(Homepage);

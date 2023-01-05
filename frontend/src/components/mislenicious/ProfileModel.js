@@ -10,7 +10,6 @@ import {
     ModalCloseButton,
   } from '@chakra-ui/react'
 import { AiFillEye } from 'react-icons/ai';
-import { useHistory } from "react-router-dom";
 
 const ProfileModel = ({ user, children }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();

@@ -11,9 +11,9 @@ const app=express();
 
 app.use(express.json());
 
-app.get('/',(req,res)=>{
-res.send("api is running succesfully");
-});
+// app.get('/',(req,res)=>{
+// res.send("api is running succesfully");
+// });
 
 app.use('/api/user',userRoutes);
 app.use('/api/chat',chatRoutes);

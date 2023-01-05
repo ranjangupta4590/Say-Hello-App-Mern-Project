@@ -27,7 +27,8 @@ const [search, setSearch] = useState("");
 const  [searchResult, setSearchResult] = useState([]);
 const [loading, setLoading] = useState(false);
 const [loadingChat, setLoadingChat] = useState();
-const {user}=ChatState();
+
+const {setSelectedChat,user,chats,setChats,}=ChatState();
 
 const toast = useToast();
 const history = useHistory();

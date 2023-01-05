@@ -7,8 +7,8 @@ import {useHistory} from 'react-router-dom';
 
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const toast = useToast();
@@ -76,27 +76,27 @@ const Login = () => {
     <div className=''>
       <div className="">
         <form>
-          <div className="mb-6 w-[100%]" id="email">
+          <div className="mb-6 w-[100%]">
             <input
+            id='email'
             required
-              type="text"
-              className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            value={email}
+              type="email"
+              className=" block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Email address"
-              name='email'
-              value={email}
               onChange={(e)=>setEmail(e.target.value)}
               />
           </div>
 
-          <div className="mb-6  relative" id="password">
+          <div className="mb-6  relative" >
           <div >
             <input
+            id='password'
               required
-              type={(!open?'password':'text')}
-              className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Password"
-              name='password'
               value={password}
+              type={(!open?'password':'text')}
+              className=" block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Password"
               onChange={(e)=>setPassword(e.target.value)}
             />
           </div>

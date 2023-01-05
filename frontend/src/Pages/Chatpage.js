@@ -1,9 +1,9 @@
-import React from 'react'
-import { useEffect } from 'react';
+import React from 'react';
 import { ChatState } from '../Context/ChatProvider';
 import SideDrawer from '../components/mislenicious/SideDrawer';
 import MyChats from '../components/mislenicious/MyChats';
 import ChatBox from '../components/mislenicious/ChatBox';
+import { withRouter } from 'react-router-dom';
 
 const Chatpage = () => {
  const {user}=ChatState();
@@ -21,4 +21,4 @@ const Chatpage = () => {
   )
 }
 
-export default Chatpage;
+export default withRouter( Chatpage);

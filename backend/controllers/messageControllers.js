@@ -3,10 +3,9 @@ const Message = require("../models/messageModel");
 const User = require("../models/userModel");
 const Chat = require("../models/chatModel");
 
-
-//Get all Messages
-//route     GET /api/Message/:chatId
-//access    Protected
+//@description     Get all Messages
+//@route           GET /api/Message/:chatId
+//@access          Protected
 const allMessages = asyncHandler(async (req, res) => {
   try {
     const messages = await Message.find({ chat: req.params.chatId })
@@ -19,9 +18,9 @@ const allMessages = asyncHandler(async (req, res) => {
   }
 });
 
-//Create New Message
-//route     POST /api/Message/
-//access    Protected
+//@description     Create New Message
+//@route           POST /api/Message/
+//@access          Protected
 const sendMessage = asyncHandler(async (req, res) => {
   const { content, chatId } = req.body;
 

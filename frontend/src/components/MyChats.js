@@ -1,14 +1,13 @@
-// import { IoAdd } from "react-icons/io";
+import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getSender } from "../../Config/ChatLogics";
+import { getSender } from "../config/ChatLogics";
 import ChatLoading from "./ChatLoading";
-import GroupChatModal from "./GroupChatModal";
+import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
-import { ChatState } from "../../Context/ChatProvider";
-import {IoAdd} from 'react-icons/io5';
+import { ChatState } from "../Context/ChatProvider";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -72,7 +71,7 @@ const MyChats = ({ fetchAgain }) => {
           <Button
             d="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-            rightIcon={<IoAdd />}
+            rightIcon={<AddIcon />}
           >
             New Group Chat
           </Button>
@@ -82,7 +81,7 @@ const MyChats = ({ fetchAgain }) => {
         d="flex"
         flexDir="column"
         p={3}
-        // bg="#F8F8F8"
+        bg="#F8F8F8"
         w="100%"
         h="100%"
         borderRadius="lg"
@@ -118,8 +117,7 @@ const MyChats = ({ fetchAgain }) => {
             ))}
           </Stack>
         ) : (
-          // <ChatLoading />
-        ""
+          <ChatLoading />
         )}
       </Box>
     </Box>

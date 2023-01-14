@@ -1,4 +1,4 @@
-import { AiOutlineClose } from "react-icons/ai";
+import { CloseIcon } from "@chakra-ui/icons";
 import { Badge } from "@chakra-ui/layout";
 
 const UserBadgeItem = ({ user, handleFunction, admin }) => {
@@ -17,7 +17,7 @@ const UserBadgeItem = ({ user, handleFunction, admin }) => {
     >
       {user.name}
       {admin === user._id && <span> (Admin)</span>}
-      <AiOutlineClose pl={1} />
+      <CloseIcon pl={1} />
     </Badge>
   );
 };

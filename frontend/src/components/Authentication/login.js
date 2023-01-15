@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -91,7 +92,7 @@ const Login = () => {
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
+              {show ?  <ViewIcon/> : <ViewOffIcon/>}
             </Button>
           </InputRightElement>
         </InputGroup>

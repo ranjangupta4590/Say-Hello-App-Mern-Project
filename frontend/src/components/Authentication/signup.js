@@ -1,5 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
@@ -156,7 +157,7 @@ const Signup = () => {
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
+              {show ?  <ViewIcon/> : <ViewOffIcon/>}
             </Button>
           </InputRightElement>
         </InputGroup>
@@ -171,7 +172,7 @@ const Signup = () => {
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
+              {show ?  <ViewIcon/> : <ViewOffIcon/>}
             </Button>
           </InputRightElement>
         </InputGroup>

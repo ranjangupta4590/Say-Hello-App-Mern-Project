@@ -89,7 +89,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
           config
         );
-        socket.emit("new message", data);
+        socket.emit("newMessage", data);
         setMessages([...messages, data]);
       } catch (error) {
         toast({
@@ -177,7 +177,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
           config
         );
-        socket.emit("new message", data);
+        socket.emit("newMessage", data);
         setMessages([...messages, data]);
       } catch (error) {
         toast({
@@ -230,12 +230,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 </>
               ))}
           </Text>
+          <div className="chatpage">
           <Box
+          
             d="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="#E8E8E8"
+            // bg="lightblue"
+            // bg="#E8E8E8"
             w="100%"
             h="100%"
             borderRadius="lg"
@@ -276,7 +279,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               )}
               <Input
                 variant="filled"
-                bg="#E0E0E0"
+                bg="white"
                 placeholder="Enter a message.."
                 value={newMessage}
                 onChange={typingHandler}
@@ -290,6 +293,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             />
             </FormControl>
           </Box>
+          </div>
         </>
       ) : (
         // to get socket.io on same page

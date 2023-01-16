@@ -4,3 +4,12 @@
   overflow-y: scroll;
   scrollbar-width: none;
 }
+.chatpage{
+  background-image: url("../chat-bg.png");
+
+  height: 100%;
+  width: 100%;
+
+  background-position: center;
+  background-size: cover;
+}

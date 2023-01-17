@@ -153,7 +153,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
-    // setNewMessage(e.target.value);
 
     if (!socketConnected) return;
 
@@ -252,8 +251,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               flexDir="column"
               justifyContent="flex-end"
               p={3}
-              // bg="lightblue"
-              // bg="#E8E8E8"
               w="100%"
               h="100%"
               borderRadius="lg"

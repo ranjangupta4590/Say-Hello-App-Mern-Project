@@ -16,6 +16,7 @@ const MyChats = ({ fetchAgain }) => {
 
   const toast = useToast();
 
+  console.log(chats);
   const fetchChats = async () => {
     // console.log(user._id);
     try {
@@ -106,8 +107,8 @@ const MyChats = ({ fetchAgain }) => {
                   <Avatar
                     size="md"
                     cursor="pointer"
-                    src={chat._id.pic}
-                  />
+                    src={!chat.isGroupChat?chat.users[1].pic:""}
+                    />
                 </Box>
                 <Box mr={3}>
                   <Text fontSize="lg" px={3}>

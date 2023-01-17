@@ -51,7 +51,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   // const sendEmoji=(e)=>{
   //   setNewMessage(e.target.value);
   // }
-  
+
   const fetchMessages = async () => {
     if (!selectedChat) return;
 
@@ -272,46 +272,43 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   <ScrollableChat messages={messages} />
                 </div>
               )}
-              <div className="textbox">
-                <FormControl
-                  d={{ base: "flex" }}
-                  onKeyDown={sendMessage}
-                  id="first-name"
-                  isRequired
-                  mt={3}
-                >
-                  {istyping ? (
-                    <div>
-                      <Lottie
-                        options={defaultOptions}
-                        // height={50}
-                        width={70}
-                        style={{ marginBottom: 15, marginLeft: 0 }}
-                      />
-                    </div>
-                  ) : (
-                    <></>
-                  )}
+              {istyping ? (
+                <div>
+                  <Lottie
+                    options={defaultOptions}
+                    width={70}
+                    style={{ marginBottom: 5, marginLeft: 0 }}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+              <FormControl
+                d={{ base: "flex" }}
+                onKeyDown={sendMessage}
+                id="first-name"
+                isRequired
+                mt={3}
+              >
 
+                <div className="textbox">
                   <Box
                     d="flex"
                     bg="gray"
                     justifyContent="space-between"
                     width="100%"
-                    height="60%"
-
+                    height="100%"
                   >
-                    <Box p={3}
-                    >
+                    <Box p={3}>
                       <div className="emoji">
                         <IconButton
                           onClick={handleEmojiShowHide}
-                          icon={<BsEmojiSmile color="black"/>}
+                          icon={<BsEmojiSmile color="black" />}
                         />
 
                         <div className="emoji-picker-react">
                           {showEmoji &&
-                            <Picker onEmojiClick={handleEmojiClick}/>
+                            <Picker onEmojiClick={handleEmojiClick} />
                           }
                         </div>
                       </div>
@@ -327,7 +324,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       <Input
                         variant="filled"
                         bg="#E0E0E0"
-                        placeholder="Enter a message.."
+                        placeholder="Enter a message..."
                         value={newMessage}
                         onChange={typingHandler}
                       />
@@ -342,8 +339,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       />
                     </Box>
                   </Box>
-                </FormControl>
-              </div>
+                </div>
+              </FormControl>
             </Box>
           </div>
         </>

@@ -6,7 +6,7 @@ import { IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
@@ -15,10 +15,14 @@ import animationData from "../animations/typing.json";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+import { BsEmojiSmile } from 'react-icons/bs';
+import { IoSendSharp } from 'react-icons/io5';
+import Picker from 'emoji-picker-react';
+const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+  const [showEmoji, setShowEmoji] = useState(false);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -38,6 +42,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const { selectedChat, setSelectedChat, user, notification, setNotification } =
     ChatState();
 
+  const handleEmojiShowHide = () => {
+    setShowEmoji(!showEmoji);
+  }
+  const handleEmojiClick = (e) => {
+    setNewMessage((newMessage) => newMessage += e.emoji);
+  }
+  // const sendEmoji=(e)=>{
+  //   setNewMessage(e.target.value);
+  // }
+  
   const fetchMessages = async () => {
     if (!selectedChat) return;
 
@@ -139,6 +153,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
+    // setNewMessage(e.target.value);
 
     if (!socketConnected) return;
 
@@ -157,9 +172,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }, timerLength);
   };
-  
-  const sendText = async() => {
-    if ( newMessage) {
+
+  const sendText = async () => {
+    if (newMessage) {
       socket.emit("stop typing", selectedChat._id);
       try {
         const config = {
@@ -231,79 +246,116 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               ))}
           </Text>
           <div className="chatpage">
-          <Box
-          
-            d="flex"
-            flexDir="column"
-            justifyContent="flex-end"
-            p={3}
-            // bg="lightblue"
-            // bg="#E8E8E8"
-            w="100%"
-            h="100%"
-            borderRadius="lg"
-            overflowY="hidden"
-          >
-            {loading ? (
-              <Spinner
-                size="xl"
-                w={20}
-                h={20}
-                alignSelf="center"
-                margin="auto"
-              />
-            ) : (
-              <div className="messages">
-                <ScrollableChat messages={messages} />
-              </div>
-            )}
+            <Box
 
-            <FormControl
-             d={{ base: "flex" }}
-              onKeyDown={sendMessage}
-              id="first-name"
-              isRequired
-              mt={3}
+              d="flex"
+              flexDir="column"
+              justifyContent="flex-end"
+              p={3}
+              // bg="lightblue"
+              // bg="#E8E8E8"
+              w="100%"
+              h="100%"
+              borderRadius="lg"
+              overflowY="hidden"
             >
-              {istyping ? (
-                <div>
-                  <Lottie
-                    options={defaultOptions}
-                    // height={50}
-                    width={70}
-                    style={{ marginBottom: 15, marginLeft: 0 }}
-                  />
-                </div>
-              ) : (
-                <></>
-              )}
-              <Input
-                variant="filled"
-                bg="white"
-                placeholder="Enter a message.."
-                value={newMessage}
-                onChange={typingHandler}
+              {loading ? (
+                <Spinner
+                  size="xl"
+                  w={20}
+                  h={20}
+                  alignSelf="center"
+                  margin="auto"
                 />
-              <IconButton
-              d={{ base:"flex" }}
-              type='submit'
-              value={newMessage}
-              onClick={sendText}
-              icon={<ArrowForwardIcon/>}
-            />
-            </FormControl>
-          </Box>
+              ) : (
+                <div className="messages">
+                  <ScrollableChat messages={messages} />
+                </div>
+              )}
+              <div className="textbox">
+                <FormControl
+                  d={{ base: "flex" }}
+                  onKeyDown={sendMessage}
+                  id="first-name"
+                  isRequired
+                  mt={3}
+                >
+                  {istyping ? (
+                    <div>
+                      <Lottie
+                        options={defaultOptions}
+                        // height={50}
+                        width={70}
+                        style={{ marginBottom: 15, marginLeft: 0 }}
+                      />
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+
+                  <Box
+                    d="flex"
+                    bg="gray"
+                    justifyContent="space-between"
+                    width="100%"
+                    height="60%"
+
+                  >
+                    <Box p={3}
+                    >
+                      <div className="emoji">
+                        <IconButton
+                          onClick={handleEmojiShowHide}
+                          icon={<BsEmojiSmile color="black"/>}
+                        />
+
+                        <div className="emoji-picker-react">
+                          {showEmoji &&
+                            <Picker onEmojiClick={handleEmojiClick}/>
+                          }
+                        </div>
+                      </div>
+                    </Box>
+
+                    <Box
+                      pt={3}
+                      pb={3}
+                      pl={0}
+                      pr={0}
+                      width="100%"
+                    >
+                      <Input
+                        variant="filled"
+                        bg="#E0E0E0"
+                        placeholder="Enter a message.."
+                        value={newMessage}
+                        onChange={typingHandler}
+                      />
+                    </Box>
+                    <Box p={3}>
+                      <IconButton
+                        d={{ base: "flex" }}
+                        type='submit'
+                        value={newMessage}
+                        onClick={sendText}
+                        icon={<IoSendSharp />}
+                      />
+                    </Box>
+                  </Box>
+                </FormControl>
+              </div>
+            </Box>
           </div>
         </>
       ) : (
         // to get socket.io on same page
-        
+
         <Box d="flex" alignItems="center" justifyContent="center" h="100%">
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
             Click on a user to start chatting
           </Text>
         </Box>
-        
+
       )}
     </>
   );

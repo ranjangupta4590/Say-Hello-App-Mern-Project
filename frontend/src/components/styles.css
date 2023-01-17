@@ -13,3 +13,15 @@
   background-position: center;
   background-size: cover;
 }
+.textbox{
+  width: 100%;
+}
+.emoji{
+ position: relative;
+
+}
+ 
+.emoji-picker-react{
+  position: absolute;
+  top:-465px;
+ }

@@ -8,7 +8,7 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const path = require("path");
 
 dotenv.config().parsed;
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT ||5000 ;
 // console.log(require("dotenv").config())
 connectDB();
 const app = express();

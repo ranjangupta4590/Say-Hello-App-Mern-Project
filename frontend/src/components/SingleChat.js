@@ -18,7 +18,8 @@ import { ChatState } from "../Context/ChatProvider";
 import { BsEmojiSmile } from 'react-icons/bs';
 import { IoSendSharp } from 'react-icons/io5';
 import Picker from 'emoji-picker-react';
-const ENDPOINT = "http://localhost:5000";
+// const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://chat-app-wevp.onrender.com";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {

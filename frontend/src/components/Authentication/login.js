@@ -50,7 +50,7 @@ const Login = () => {
       toast({
         title: "Login Successful",
         status: "success",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
         position: "bottom",
       });
@@ -106,7 +106,7 @@ const Login = () => {
       >
         Login
       </Button>
-      <Button
+      {/* <Button
         variant="solid"
         colorScheme="red"
         width="100%"
@@ -116,7 +116,7 @@ const Login = () => {
         }}
       >
         Get Guest User Credentials
-      </Button>
+      </Button> */}
     </VStack>
   );
 };
